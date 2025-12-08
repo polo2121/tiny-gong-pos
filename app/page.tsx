@@ -29,7 +29,7 @@ export default function Home() {
           <h1 className="font-margarine text-gray-800 text-lg">My Workspace</h1>
           <div className="w-full grid grid-cols-1 gap-4 justify-between xs:grid-cols-2 md:grid-cols-3">
             {/* Bubble Card */}
-            <BubbleButton name="sale" />
+            <BubbleButton />
           </div>
         </section>
       </main>
