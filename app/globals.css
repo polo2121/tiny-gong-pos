@@ -23,8 +23,20 @@
   --color-brown-200: #FAEEE3;
   --color-brown-100: #FDF7F1;
 
+  --color-stock-600: #D5B463;
+  --color-stock-550: #DDCCA1;
+  --color-stock-200: #F6EBD2;
+
+  --color-product-600: #84C5CC;
+  --color-product-550: #BDEAEF;
+  --color-product-200: #DCFBFE;
+
+
    --radius-home: 36px;
   --shadow-drop-brown-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-brown-200);
+  --shadow-drop-stock-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-stock-200);
+  --shadow-drop-product-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-product-200);
+
 
   --anim-shine-over-l: shine-over-l 520ms cubic-bezier(.2,.8,.25,1) both;
   --anim-shine-over-xs: shine-over-xs 1000ms cubic-bezier(.2,.8,.25,1) both;

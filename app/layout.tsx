@@ -31,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${margarine.variable} ${quicksand.variable} `}>
+      <body
+        className={`${margarine.variable} ${quicksand.variable} overflow-y-scroll overflow-x-hidden`}
+      >
         {children}
       </body>
     </html>
