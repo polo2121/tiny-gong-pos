@@ -65,7 +65,7 @@ const BubbleButton = ({ name }: { name: ButtonName }) => {
 
   return (
     <a
-      href="#hello"
+      href="/sales"
       className={`flex flex-col gap-2 justify-end w-full h-44 px-4 py-6 rounded-home ${buttonType[name]?.fillColor} text-white relative border ${buttonType[name]?.strokeColor} ${buttonType[name]?.dropShadowColor} overflow-hidden group focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button`}
       style={{ WebkitTouchCallout: "none" }}
     >
