@@ -38,7 +38,7 @@ const Sale = () => {
           <h1 className="font-margarine font-base text-3xl">Sales</h1>
           <p className="font-uMoe text-s">(အရောင်းစာရင်း)</p>
         </div>
-        <p className="bg-rd-300 font-quicksand font-normal text-sm">
+        <p className="bg-rd-300 font-quicksand font-medium text-sm">
           This is your new creative playground. Explore, invent, and share your
           biggest ideas with us. Tingy is so excited for all the fun we'll have!
         </p>
