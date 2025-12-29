@@ -1,19 +1,11 @@
-import React from "react";
-import Image from "next/image";
+import AmountDisplay from "./ui/AmountDisplay";
+
+interface NumberFormatterProps {
+  rawNum: string;
+  numSuffix: string;
+}
 
 const BubbleOutline = () => {
-  const formatLargeNumber = (num) => {
-    const formatter = new Intl.NumberFormat("en-US"); // Use user locale if preferred
-
-    if (num > 999999) {
-      return (
-        (num / 100).toLocaleString("en-US", { maximumFractionDigits: 1 }) + "K"
-      );
-    }
-
-    return formatter.format(num);
-  };
-
   return (
     <div className="w-full grid grid-cols-1 gap-4 justify-between xs:grid-cols-2 md:grid-cols-3">
       <a
@@ -25,7 +17,7 @@ const BubbleOutline = () => {
       >
         {/* highlgiht up */}
         <svg
-          className="absolute top-2 left-2 z-10 "
+          className="absolute top-2.5 left-3 z-10 "
           width="17"
           height="14"
           viewBox="0 0 17 14"
@@ -42,18 +34,14 @@ const BubbleOutline = () => {
           />
         </svg>
 
-        <div className="flex flex-col gap-2 py-8">
-
+        <div className="flex flex-col gap-2 py-8 p-6 bg-amber-40">
           <div>
-            <p className="text-sm font-quicksand font-medium relative z-10">
+            <p className="text-sm font-quicksand font-medium opacity-80 relative z-10">
               Total Sale
             </p>
-            <p className="font-uMoe text-xs">(စုစုပေါင်းစာရင်း)</p>
+            <p className="font-uMoe text-xs opacity-80">(စုစုပေါင်းစာရင်း)</p>
           </div>
-
-          <p className="text-xl font-margarine relative z-10 w-fit">
-            {formatLargeNumber(5000000)} <small className="text-xs ">MMK</small>
-          </p>
+          <AmountDisplay amount={10000000} />
         </div>
 
         {/* highlgiht bottom */}
