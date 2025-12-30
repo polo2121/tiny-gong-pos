@@ -1,5 +1,5 @@
-import React from "react";
-import BubbleOutline from "@/components/BubbleOutline";
+import CurrentSaleSummary from "./components/ui/CurrentSaleSummary";
+import DashboardHeader from "@/components/ui/DashboardHeader";
 
 import {
   Breadcrumb,
@@ -9,6 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Line } from "recharts";
 
 const Sale = () => {
   return (
@@ -33,27 +34,12 @@ const Sale = () => {
       </Breadcrumb>
 
       {/* Willl add layout later strating from here */}
-      <section className="flex flex-col gap-4 px-6 pt-6">
-        <div>
-          <h1 className="font-margarine font-base text-3xl">Sales</h1>
-          <p className="font-uMoe text-s">(အရောင်းစာရင်း)</p>
-        </div>
-        <p className="bg-rd-300 font-quicksand font-medium text-sm">
-          This is your new creative playground. Explore, invent, and share your
-          biggest ideas with us. Tingy is so excited for all the fun we'll have!
-        </p>
-      </section>
-
-      <section className="flex flex-col gap-4 px-6 pt-6">
-        <div>
-          <h1 className="font-margarine font-base text-lg">
-            Current Sale (Till Now)
-          </h1>
-          <p className="font-uMoe text-sm">(ယနေ့ထိအရောင်း)</p>
-        </div>
-
-        <BubbleOutline />
-      </section>
+      <DashboardHeader
+        heading="Sales"
+        burmeseLabel="အရောင်းစာရင်း"
+        subtitle="This is your new creative playground. Explore, invent, and share your biggest ideas with us. Tingy is so excited for all the fun we'll have!"
+      />
+      <CurrentSaleSummary />
     </section>
   );
 };
