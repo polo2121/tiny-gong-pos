@@ -74,6 +74,9 @@
   --color-product-200: #DCFBFE;
 
    --radius-home: 36px;
+
+  --shadow-drop-primary-sale-btn: inset 0 4px 0 rgba(255,255,255,0.25), 0 5px 0 var(--color-brown-400);
+
   --shadow-drop-brown-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-brown-200);
   --shadow-drop-stock-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-stock-200);
   --shadow-drop-product-card: inset 0 6px 0 rgba(255,255,255,0.25), 0 8px 0 var(--color-product-200);

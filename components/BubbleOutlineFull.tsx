@@ -1,5 +1,6 @@
 import React from "react";
 import { lazy, Suspense } from "react";
+import ChartSkeleton from "@/components/ui/ChartSkeleton";
 
 import AmountDisplay from "@/components/ui/AmountDisplay";
 const ProfitSoFarChart = lazy(
@@ -34,7 +35,7 @@ const BubbleOutlineFull = () => {
       </svg>
 
       <div className="flex  gap-4 py-8 p-6 bg-mber-100">
-        <div className="bg-amber-100 w-fit">
+        <div className="bg-aber-100 w-fit">
           <div>
             <p className="text-sm font-quicksand font-medium opacity-80 relative z-10">
               Total Profit
@@ -44,10 +45,11 @@ const BubbleOutlineFull = () => {
           <AmountDisplay amount={11000} />
         </div>
 
-        <Suspense fallback={<h1>Loading</h1>}>
+        <Suspense fallback={<ChartSkeleton />}>
           <ProfitSoFarChart />
         </Suspense>
       </div>
+
       {/* highlgiht bottom */}
       <svg
         className="absolute bottom-3 right-4"

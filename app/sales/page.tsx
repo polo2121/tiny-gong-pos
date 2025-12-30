@@ -1,5 +1,6 @@
 import CurrentSaleSummary from "./components/ui/CurrentSaleSummary";
 import DashboardHeader from "@/components/ui/DashboardHeader";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 import {
   Breadcrumb,
@@ -40,6 +41,14 @@ const Sale = () => {
         subtitle="This is your new creative playground. Explore, invent, and share your biggest ideas with us. Tingy is so excited for all the fun we'll have!"
       />
       <CurrentSaleSummary />
+
+      <section className="flex justify-between gap-4 px-6 pt-6 mb-6">
+        <div>
+          <h1 className="font-margarine font-base text-lg">Today Sales</h1>
+          <p className="font-uMoe text-sm">(ယနေ့အရောင်း)</p>
+        </div>
+        <PrimaryButton type="sale" text="June 2025" />
+      </section>
     </section>
   );
 };
