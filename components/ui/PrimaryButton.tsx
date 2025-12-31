@@ -1,7 +1,12 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-const PrimaryButton = ({ type, text }) => {
+interface PrimaryButtonProps {
+  type: string;
+  text: string;
+}
+
+const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
   const buttonColor = {
     sale: "bg-green-500 hover:bg-green-600 text-white",
   };
