@@ -1,19 +1,72 @@
 import React from "react";
 import Image from "next/image";
-const BubbleButton = () => {
+
+type ButtonName =
+  | "sales"
+  | "stocks"
+  | "products"
+  | "profits"
+  | "expenses"
+  | "customers";
+
+type ButtonType = {};
+
+const BubbleButton = ({ name }: { name: ButtonName }) => {
   const buttonType = {
-    sale: {
+    sales: {
       name: "Daily Sale",
-      fillColor: "",
-      strokeColor: "",
-      dropShadowColor: "",
+      fillColor: "bg-brown-600",
+      strokeColor: "border-brown-550",
+      dropShadowColor: "shadow-drop-brown-card",
       mmText: "",
+      image: "sale-stand.svg",
     },
-  };
+    stocks: {
+      name: "Stocks",
+      fillColor: "bg-stock-600",
+      strokeColor: "border-stock-550",
+      dropShadowColor: "shadow-drop-stock-card",
+      mmText: "",
+      image: "stock.svg",
+    },
+    products: {
+      name: "Products",
+      fillColor: "bg-product-600",
+      strokeColor: "border-product-550",
+      dropShadowColor: "shadow-drop-product-card",
+      mmText: "",
+      image: "child-clothes.svg",
+    },
+    profits: {
+      name: "Daily Sale",
+      fillColor: "bg-brown-600",
+      strokeColor: "border-brown-550",
+      dropShadowColor: "shadow-drop-brown-card",
+      mmText: "",
+      image: "",
+    },
+    expenses: {
+      name: "Daily Sale",
+      fillColor: "bg-brown-600",
+      strokeColor: "border-brown-550",
+      dropShadowColor: "shadow-drop-brown-card",
+      mmText: "",
+      image: "",
+    },
+    customers: {
+      name: "Daily Sale",
+      fillColor: "bg-brown-600",
+      strokeColor: "border-brown-550",
+      dropShadowColor: "shadow-drop-brown-card",
+      mmText: "",
+      image: "",
+    },
+  } as const;
+
   return (
     <a
-      href="#hello"
-      className={`flex flex-col gap-2 justify-end w-full h-44 px-4 py-6 rounded-home bg-brown-600 text-white relative border border-brown-550 shadow-drop-brown-card overflow-hidden group focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button `}
+      href="/sales"
+      className={`flex flex-col gap-2 justify-end w-full h-44 px-4 py-6 rounded-home ${buttonType[name]?.fillColor} text-white relative border ${buttonType[name]?.strokeColor} ${buttonType[name]?.dropShadowColor} overflow-hidden group focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button`}
       style={{ WebkitTouchCallout: "none" }}
     >
       {/* shine effect */}
@@ -39,10 +92,18 @@ const BubbleButton = () => {
           strokeLinejoin="bevel"
         />
       </svg>
-      <div className="w-full flex justify-end">
-        <Image src="/svg/sale-stand.svg" width={60} height={60} alt="icon" />
+      <div className="w-full h-fit overflow-hidden flex justify-end">
+        <Image
+          src={`/svg/${buttonType[name]?.image}`}
+          width={100}
+          height={100}
+          alt="icon"
+          className="flex w-fit"
+        />
       </div>
-      <p className="text-xl font-margarine relative z-10">Daily Sale</p>
+      <p className="text-xl font-margarine relative z-10">
+        {buttonType[name]?.name}
+      </p>
       <p className="text-xs font-quicksand font-medium relative z-10">
         View current inventory levels, product ava.....
       </p>
