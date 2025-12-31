@@ -5,16 +5,19 @@ interface PrimaryButtonProps {
   type: string;
   text: string;
 }
+interface ButtonColor {
+  [key: string]: string;
+}
 
 const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
-  const buttonColor = {
-    sale: "bg-green-500 hover:bg-green-600 text-white",
+  const buttonColor: ButtonColor = {
+    sale: "border-brown-550 bg-brown-600 text-white shadow-drop-primary-sale-btn",
   };
 
   return (
     <a
       href="/sales"
-      className={`relative overflow-hidden group select-none touch-none flex flex-col justify-end gap-2 w-fit h-fit px-2 py-1.5 rounded-home border border-brown-550 bg-brown-600 text-white shadow-drop-primary-sale-btn transition-transform will-change-transform animate-(--anim-bubble) active:animate-(--anim-bubble-press) focus-visible:none bubble-button`}
+      className={`relative overflow-hidden group select-none touch-none flex flex-col justify-end gap-2 w-fit h-fit px-2 py-1.5 rounded-home border ${buttonColor[type]} transition-transform will-change-transform animate-(--anim-bubble) active:animate-(--anim-bubble-press) focus-visible:none bubble-button`}
       style={{ WebkitTouchCallout: "none" }}
     >
       {/* shine effect */}

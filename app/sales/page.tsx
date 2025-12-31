@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Line } from "recharts";
+import SelectDateButton from "./components/ui/SelectDateButton";
 
 const Sale = () => {
   return (
@@ -47,7 +48,7 @@ const Sale = () => {
           <h1 className="font-margarine font-base text-lg">Today Sales</h1>
           <p className="font-uMoe text-sm">(ယနေ့အရောင်း)</p>
         </div>
-        <PrimaryButton type="sale" text="June 2025" />
+        <SelectDateButton />
       </section>
     </section>
   );

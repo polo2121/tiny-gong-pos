@@ -1,15 +1,6 @@
 "use client";
 import React from "react";
-import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-} from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 const ProfitSoFarChart = () => {
   const data = [
@@ -164,6 +155,7 @@ const ProfitSoFarChart = () => {
             tick={{ fill: "#431407", fontSize: 12, opacity: 0.7 }}
             tickMargin={10}
             pointerEvents="none"
+            
           />
         </LineChart>
       </div>
