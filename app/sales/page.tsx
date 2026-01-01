@@ -1,6 +1,5 @@
 import CurrentSaleSummary from "./components/ui/CurrentSaleSummary";
 import DashboardHeader from "@/components/ui/DashboardHeader";
-import PrimaryButton from "@/components/ui/PrimaryButton";
 
 import {
   Breadcrumb,
@@ -10,8 +9,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Line } from "recharts";
+
+import TodaySale from "./components/ui/TodaySale";
+
+import TitleHeader from "@/components/ui/TitleHeader";
 import SelectDateButton from "./components/ui/SelectDateButton";
+import SaleBarChart from "./components/charts/SaleBarChart";
 
 const Sale = () => {
   return (
@@ -42,14 +45,12 @@ const Sale = () => {
         subtitle="This is your new creative playground. Explore, invent, and share your biggest ideas with us. Tingy is so excited for all the fun we'll have!"
       />
       <CurrentSaleSummary />
-
-      <section className="flex justify-between gap-4 px-6 pt-6 mb-6">
-        <div>
-          <h1 className="font-margarine font-base text-lg">Today Sales</h1>
-          <p className="font-uMoe text-sm">(ယနေ့အရောင်း)</p>
-        </div>
-        <SelectDateButton />
-      </section>
+      <TodaySale>
+        <TitleHeader title="Today Sale" subtitle="ဒီနေ့ အရောင်းစာရင်း">
+          <SelectDateButton />
+        </TitleHeader>
+        <SaleBarChart />
+      </TodaySale>
     </section>
   );
 };

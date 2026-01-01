@@ -155,7 +155,6 @@ const ProfitSoFarChart = () => {
             tick={{ fill: "#431407", fontSize: 12, opacity: 0.7 }}
             tickMargin={10}
             pointerEvents="none"
-            
           />
         </LineChart>
       </div>
