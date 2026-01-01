@@ -15,6 +15,7 @@ import TodaySale from "./components/ui/TodaySale";
 import TitleHeader from "@/components/ui/TitleHeader";
 import SelectDateButton from "./components/ui/SelectDateButton";
 import SaleBarChart from "./components/charts/SaleBarChart";
+import ProductSalePie from "./components/charts/ProductSalePie";
 
 const Sale = () => {
   return (
@@ -50,7 +51,20 @@ const Sale = () => {
           <SelectDateButton />
         </TitleHeader>
         <SaleBarChart />
+        <a href="#" className="text-xs underline text-brown-900 mt-2">
+          View Detailed Report
+        </a>
       </TodaySale>
+
+      <section className="flex flex-col gap-4 px-6 pt-6">
+        <TitleHeader
+          title="Sale by Products"
+          subtitle="ရောင်းရဆုံးproductစာရင်း"
+        />
+        <ProductSalePie />
+      </section>
+
+      
     </section>
   );
 };

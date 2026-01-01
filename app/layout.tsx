@@ -3,6 +3,7 @@ import { Margarine, Quicksand } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import localFont from "next/font/local";
+import MobileMenu from "@/components/ui/MobileMenu";
 
 const margarine = Margarine({
   variable: "--font-margarine",
@@ -57,6 +58,9 @@ export default function RootLayout({
           />
         </div>
         {children}
+        <div className="bg-ambr-200 w-full flex justify-center">
+          <MobileMenu />
+        </div>
       </body>
     </html>
   );
