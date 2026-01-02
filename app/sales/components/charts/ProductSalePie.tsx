@@ -82,20 +82,18 @@ const ProductSalePie = () => {
         </Pie>
       </PieChart>
 
-      <figcaption className="text-center flex flex-col gap-2 text-md text-brown-900  bottom-0 left-0 right-0">
-        <div className="flex items-center gap-3 justify-center bg-amer-300">
-          {data.map(({ name }, index) => (
-            <>
-              <div
-                className={`w-4 h-4 rounded-full`}
-                style={{ background: COLORS[index] }}
-              ></div>
-              <span className="font-medium text-xs" key={name}>
-                {name}
-              </span>
-            </>
-          ))}
-        </div>
+      <figcaption className="text-center flex  gap-2 text-md text-brown-900  bottom-0 left-0 right-0 bg-amber-400">
+        {data.map(({ name }, index) => (
+          <div key={index} className="flex  gap-2 items-center">
+            <span
+              className={`w-4 h-4 rounded-full block`}
+              style={{ background: COLORS[index] }}
+            ></span>
+            <span className="font-medium text-xs" key={name}>
+              {name}
+            </span>
+          </div>
+        ))}
       </figcaption>
     </figure>
   );
