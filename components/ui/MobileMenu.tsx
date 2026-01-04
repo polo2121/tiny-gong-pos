@@ -4,13 +4,54 @@ import React from "react";
 import { Button } from "./button";
 import { useState } from "react";
 import Image from "next/image";
+import MenuBearSVG from "@/app/sales/components/ui/MenuBearSVG";
 
-type MobileMenuType = "sale" | "profit" | "capital" | "expenses" | "delivery";
+type MobileMenuItem = "sale" | "profit" | "capital" | "expenses" | "delivery";
+type MobileMenuArray = MobileMenuItem[];
 
 const MobileMenu = () => {
-  const [activeMenu, setActiveMenu] = useState<MobileMenuType>("sale");
+  const [menuType, setMenuType] = useState<MobileMenuArray>([
+    "delivery",
+    "sale",
+    "capital",
+    "expenses",
+    "delivery",
+  ]);
   return (
     <section className="fixed z-20 bottom-0 right-0">
+      <nav className="absolute right-0 bottom-12 px-10 py-6 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu">
+        {/* Bear Imagae */}
+        <MenuBearSVG />
+        <ul className="flex flex-col gap-3 bg-amer-700 capitalize">
+          <a
+            href=""
+            className="w-full relative bottom-0 text-brown-800 text-lg"
+          >
+            <li>{menuType[0]}</li>{" "}
+            <Image
+              className="absolute top-5"
+              src="/svg/active-menu-line.svg"
+              width={100}
+              height={100}
+              alt="active menu line icon"
+            />
+          </a>
+
+          {menuType.map((type, index) => (
+            <a
+              href=""
+              className={`w-full flex gap-2 items-center relative ${
+                index !== 0 ? "opacity-40" : "hidden"
+              }`}
+              key={index}
+            >
+              <li>{type}</li>
+            </a>
+          ))}
+
+          <Button className="bg-white text-left text-brown-900">Close</Button>
+        </ul>
+      </nav>
       <Button className="w-18 py-5 rounded-full border-2 border-gray-200 bg-gray-100 shadow-drop-mobile-menu relative hover:bg-accent group cursor-pointer focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button overflow-hidden">
         {/* Up Hightlight */}
         <svg
@@ -72,61 +113,6 @@ const MobileMenu = () => {
           />
         </svg>
       </Button>
-
-      <nav className="absolute right-0 bottom-12 px-10 py-6 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu ">
-        <ul className="flex flex-col gap-4 bg-amer-700">
-          <a
-            href=""
-            className={`w-full flex gap-2 items-center relative ${
-              activeMenu === "sale" ? "opacity-100" : "opacity-40"
-            }`}
-          >
-            <span className="w-2 h-0.5 absolute bottom-0 bg-brown-800 rounded-full "></span>
-            <span className="w-5 h-0.5 absolute bottom-0 left-3 bg-brown-800 rounded-full "></span>
-
-            <li>Sale</li>
-            <Image
-              src="/svg/menu-active-bear.svg"
-              width={20}
-              height={20}
-              alt="bear icon"
-            />
-          </a>
-          <a
-            href=""
-            className={`flex  gap-2 items-center ${
-              activeMenu === "profit" ? "opacity-100" : "opacity-40"
-            }`}
-          >
-            <li>Profit</li>
-          </a>
-          <a
-            href=""
-            className={`flex  gap-2 items-center ${
-              activeMenu === "capital" ? "opacity-100" : "opacity-40"
-            }`}
-          >
-            <li>Capital</li>
-          </a>
-          <a
-            href=""
-            className={`flex  gap-2 items-center ${
-              activeMenu === "expenses" ? "opacity-100" : "opacity-40"
-            }`}
-          >
-            <li>Expense</li>
-          </a>
-          <a
-            href=""
-            className={`flex  gap-2 items-center ${
-              activeMenu === "delivery" ? "opacity-100" : "opacity-40"
-            }`}
-          >
-            <li>Delivery</li>
-          </a>
-          <Button className="bg-white text-left text-brown-900">Close</Button>
-        </ul>
-      </nav>
     </section>
   );
 };

@@ -63,8 +63,6 @@ const Sale = () => {
         />
         <ProductSalePie />
       </section>
-
-      
     </section>
   );
 };
