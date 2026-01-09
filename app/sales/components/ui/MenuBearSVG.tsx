@@ -4,7 +4,7 @@ const MenuBearSVG = () => {
   return (
     <div className="">
       <svg
-        className="absolute bottom-60 right-4"
+        className="absolute bottom-58 right-4"
         width="28"
         height="28"
         viewBox="0 0 19 19"

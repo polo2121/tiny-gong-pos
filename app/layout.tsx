@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Margarine, Quicksand } from "next/font/google";
-import "./globals.css";
-import "./styles/animations/bear.css";
+import "@/globals.css";
+import "@/styles/animations/bear.css";
 
 import Image from "next/image";
 import localFont from "next/font/local";

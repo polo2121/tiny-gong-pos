@@ -5,52 +5,77 @@ import { Button } from "./button";
 import { useState } from "react";
 import Image from "next/image";
 import MenuBearSVG from "@/app/sales/components/ui/MenuBearSVG";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-type MobileMenuItem = "sale" | "profit" | "capital" | "expenses" | "delivery";
-type MobileMenuArray = MobileMenuItem[];
+interface NavItems {
+  label: string;
+  href: string;
+}
 
 const MobileMenu = () => {
-  const [menuType, setMenuType] = useState<MobileMenuArray>([
-    "delivery",
-    "sale",
-    "capital",
-    "expenses",
-    "delivery",
-  ]);
+  const pathname = usePathname();
+
+  const navItems: NavItems[] = [
+    { label: "sales", href: "/sales" },
+    { label: "profits", href: "/profits" },
+    { label: "capitals", href: "/capitals" },
+    { label: "expenses", href: "/expenses" },
+    { label: "delivery", href: "/delivery" },
+  ];
+
+  const currentPath: NavItems | undefined = navItems.find(
+    (item) => pathname === item.href || pathname.startsWith(`${item.href}/`)
+  );
+
+  console.log(currentPath);
+
+  // console.log(isActive);
+  // const [menuType, setMenuType] = useState<NavItems>([
+  //   "delivery",
+  //   "sale",
+  //   "capital",
+  //   "expenses",
+  //   "profit",
+  // ]);
+
   return (
     <section className="fixed z-20 bottom-0 right-0">
-      <nav className="absolute right-0 bottom-12 px-10 py-6 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu">
+      <nav className="flex flex-col gap-3 absolute right-0 bottom-12 px-10 py-2 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu capitalize">
         {/* Bear Imagae */}
         <MenuBearSVG />
-        <ul className="flex flex-col gap-3 bg-amer-700 capitalize">
-          <a
-            href=""
-            className="w-full relative bottom-0 text-brown-800 text-lg"
-          >
-            <li>{menuType[0]}</li>{" "}
-            <Image
-              className="absolute top-5"
-              src="/svg/active-menu-line.svg"
-              width={100}
-              height={100}
-              alt="active menu line icon"
-            />
-          </a>
 
-          {menuType.map((type, index) => (
-            <a
-              href=""
-              className={`w-full flex gap-2 items-center relative ${
-                index !== 0 ? "opacity-40" : "hidden"
+        {/* Non-Active Menu */}
+        {navItems.map((item) => {
+          const isActive =
+            pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+          return (
+            <Link
+              key={item.href}
+              href="/sale"
+              className={`w-full relative bottom-0  text-brown-800 text-lg ${
+                isActive ? " text-brown-800" : " text-brown-900 opacity-50"
               }`}
-              key={index}
             >
-              <li>{type}</li>
-            </a>
-          ))}
+              {item.label}
 
-          <Button className="bg-white text-left text-brown-900">Close</Button>
-        </ul>
+              {isActive ? (
+                <Image
+                  className="absolute top-6"
+                  src="/svg/active-menu-line.svg"
+                  width={100}
+                  height={100}
+                  alt="active menu line icon"
+                />
+              ) : null}
+            </Link>
+          );
+        })}
+
+        <Button className="bg-white text-sm  text-brown-900 opacity-50">
+          Close
+        </Button>
       </nav>
       <Button className="w-18 py-5 rounded-full border-2 border-gray-200 bg-gray-100 shadow-drop-mobile-menu relative hover:bg-accent group cursor-pointer focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button overflow-hidden">
         {/* Up Hightlight */}

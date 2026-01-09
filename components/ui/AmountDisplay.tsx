@@ -8,7 +8,7 @@ const AmountDisplay = ({ amount }: { amount: number }) => {
   const formattedAmount = (num: number): NumberFormatterProps => {
     return {
       rawNum: num.toLocaleString("en-US"),
-      numSuffixStyle: amount >= 9999999 ? "absolute right-0 -bottom-3" : "",
+      numSuffixStyle: amount >= 9999999 ? "absolute right-0 -bottom-3" : "pl-1",
     };
   };
 
