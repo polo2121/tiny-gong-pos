@@ -14,6 +14,8 @@ interface NavItems {
 }
 
 const MobileMenu = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+
   const pathname = usePathname();
 
   const navItems: NavItems[] = [
@@ -24,24 +26,19 @@ const MobileMenu = () => {
     { label: "delivery", href: "/delivery" },
   ];
 
-  const currentPath: NavItems | undefined = navItems.find(
-    (item) => pathname === item.href || pathname.startsWith(`${item.href}/`)
-  );
-
-  console.log(currentPath);
-
-  // console.log(isActive);
-  // const [menuType, setMenuType] = useState<NavItems>([
-  //   "delivery",
-  //   "sale",
-  //   "capital",
-  //   "expenses",
-  //   "profit",
-  // ]);
+  const handleMenuToggle = () => {
+    setOpenMenu(!openMenu);
+  };
 
   return (
-    <section className="fixed z-20 bottom-0 right-0">
-      <nav className="flex flex-col gap-3 absolute right-0 bottom-12 px-10 py-2 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu capitalize">
+    <section className="fixed z-20 bottom-2 right-4">
+      {/* Menu */}
+
+      <nav
+        className={`flex flex-col gap-3 absolute right-0 bottom-12 px-10 py-2 rounded-4xl bg-gray-100/90 border-2 border-white text-brown-900 font-margarine shadow-drop-mobile-menu capitalize ${
+          openMenu ? "bounce-entrance" : "bounce-exit"
+        }`}
+      >
         {/* Bear Imagae */}
         <MenuBearSVG />
 
@@ -77,7 +74,12 @@ const MobileMenu = () => {
           Close
         </Button>
       </nav>
-      <Button className="w-18 py-5 rounded-full border-2 border-gray-200 bg-gray-100 shadow-drop-mobile-menu relative hover:bg-accent group cursor-pointer focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button overflow-hidden">
+
+      {/* Menu Trigger Button */}
+      <Button
+        className="w-16 py-5 rounded-full border border-gray-200 bg-gray-100 shadow-drop-mobile-menu relative hover:bg-accent group cursor-pointer focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button overflow-hidden"
+        onClick={handleMenuToggle}
+      >
         {/* Up Hightlight */}
         <svg
           className="absolute top-0.5 left-1.5 z-10"
@@ -97,10 +99,10 @@ const MobileMenu = () => {
           />
         </svg>
 
-        {/* Shine Bar */}
+        {/* Shine Bars */}
         <div className="w-full h-full absolute left-0 bottom-0  z-30 touch-none select-none animate-(--anim-shine-origin-xs) shine">
-          <div className="absolute w-3 h-20 -top-8 left-3 flex bg-[#FCFFF8]/60 rotate-40 rounded-full"></div>
-          <div className="absolute w-3 h-20 -top-5 left-6 flex bg-[#FCFFF8]/60 rotate-40 rounded-full"></div>
+          <div className="absolute w-2 h-20 -top-8 left-3 flex bg-[#FCFFF8]/60 rotate-35 rounded-full"></div>
+          <div className="absolute w-2 h-20 -top-7 left-6 flex bg-[#FCFFF8]/60 rotate-35 rounded-full"></div>
         </div>
 
         {/* SVG Bag Icon */}
