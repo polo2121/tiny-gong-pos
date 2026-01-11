@@ -63,6 +63,8 @@
   --color-brown-550: #E2C5AA;
   --color-brown-500: #FFE9D4;
   --color-brown-400: #F5E9DE;
+  --color-brown-450: #F9DEC5;
+
   --color-brown-300: #FFF2E6;
   --color-brown-200: #FAEEE3;
   --color-brown-100: #FDF7F1;
@@ -74,6 +76,10 @@
   --color-product-600: #84C5CC;
   --color-product-550: #BDEAEF;
   --color-product-200: #DCFBFE;
+
+  --color-remove-200: #FFDDDE;
+  --color-remove-300: #FFCFD0;
+
 
   --radius-home: 36px;
 
@@ -96,6 +102,35 @@
 
 }
 
+html {
+  background-color: var(--background);
+  color-scheme: light;
+}
+
+body {
+  font-family: "UMoe", ui-sans-serif, system-ui;
+}
+.custom-border{
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='22' ry='22' stroke='%23838383' stroke-width='1' stroke-dasharray='6%2c 14' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
+
+}
+.customer-border-b {
+  background-image: repeating-linear-gradient(
+    to right,
+    #838383 0 6px,
+    transparent 6px 20px
+  );
+  background-size: 100% 1px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+
+}
+
+.bubble-shake{
+  animation: bubble 2000ms cubic-bezier(.2, .8, .25, 1) infinite;
+    animation-delay: 40s;
+
+}
 .bubble-button:hover .shine {
   animation: shine-over-xs 1000ms cubic-bezier(.2, .8, .25, 1);
 }
@@ -107,7 +142,7 @@
 
 .bounce-exit {
   transform-origin: top;
-  animation: springBounceExit 480ms cubic-bezier(.34, 1.56, .64, 1);
+  animation: springBounceExit 800ms cubic-bezier(.34, 1.56, .64, 1) forwards;
   transform: translateY(-8px) scale(0.95);
   opacity: 0;
 
@@ -188,7 +223,6 @@
     transform: scaleY(1.1) scaleX(0.9);
   }
 }
-
 @keyframes springBounceEntrance {
   0% {
     transform: translateX(200px) translateY(100px) scale(0.95);
@@ -212,26 +246,23 @@
   }
 
   100% {
-    transform: translateY(-8px) scale(0.95);
+    transform: translateY(300px) translateX(400px) scale(0.95);
     opacity: 0;
   }
 }
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     /* --foreground: #ededed; */
   }
 }
 
-html {
-  background-color: var(--background);
-  color-scheme: light;
+@media (prefers-reduced-motion: reduce) {
+  .bubble-shake {
+   animation-play-state: paused !important;
+  }
 }
 
-body {
-  font-family: "UMoe", ui-sans-serif, system-ui;
-}
+
 
 
 

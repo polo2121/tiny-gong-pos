@@ -82,7 +82,7 @@ const ProductSalePie = () => {
         </Pie>
       </PieChart>
 
-      <figcaption className="text-center flex  gap-2 text-md text-brown-900  bottom-0 left-0 right-0 bg-amber-400">
+      <figcaption className="text-center flex  gap-2 text-md text-brown-900  bottom-0 left-0 right-0">
         {data.map(({ name }, index) => (
           <div key={index} className="flex  gap-2 items-center">
             <span

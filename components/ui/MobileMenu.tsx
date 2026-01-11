@@ -31,7 +31,7 @@ const MobileMenu = () => {
   };
 
   return (
-    <section className="fixed z-20 bottom-2 right-4">
+    <section className="fixed z-20 bottom-3 right-5">
       {/* Menu */}
 
       <nav
@@ -139,6 +139,13 @@ const MobileMenu = () => {
             strokeLinejoin="bevel"
           />
         </svg>
+      </Button>
+
+      <Button
+        className="absolute left-6 bottom-8 w-10 py-3 rounded-full border border-brown-200 bg-brown-500 shadow-drop-mobile-menu hover:bg-accent group cursor-pointer focus-visible:none will-change-transform transition-transform select-none touch-none animate-(--anim-bubble) active:animate-(--anim-bubble-press) bubble-button overflow-hidden text-brown-900 font-quicksand text-xs bubble-shake"
+        onClick={handleMenuToggle}
+      >
+        9+
       </Button>
     </section>
   );

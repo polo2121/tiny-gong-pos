@@ -16,6 +16,8 @@ import TitleHeader from "@/components/ui/TitleHeader";
 import SelectDateButton from "./components/ui/SelectDateButton";
 import SaleBarChart from "./components/charts/SaleBarChart";
 import ProductSalePie from "./components/charts/ProductSalePie";
+import SaleByProduct from "./components/ui/SaleByProduct";
+import SaleRecords from "./components/ui/SaleRecords";
 
 const Sale = () => {
   return (
@@ -46,6 +48,7 @@ const Sale = () => {
         subtitle="This is your new creative playground. Explore, invent, and share your biggest ideas with us. Tingy is so excited for all the fun we'll have!"
       />
       <CurrentSaleSummary />
+
       <TodaySale>
         <TitleHeader title="Today Sale" subtitle="ဒီနေ့ အရောင်းစာရင်း">
           <SelectDateButton />
@@ -56,12 +59,17 @@ const Sale = () => {
         </a>
       </TodaySale>
 
-      <section className="flex flex-col gap-4 px-6 pt-6">
+      <SaleByProduct>
         <TitleHeader
           title="Sale by Products"
           subtitle="ရောင်းရဆုံးproductစာရင်း"
         />
         <ProductSalePie />
+      </SaleByProduct>
+
+      <section className="flex flex-col gap-4 px-6 pt-6 mb-30">
+        <TitleHeader title="Sales Records" subtitle="အရောင်းစရင်းများ" />
+        <SaleRecords />
       </section>
     </section>
   );
