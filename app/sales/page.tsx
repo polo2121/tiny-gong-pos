@@ -1,6 +1,6 @@
 import CurrentSaleSummary from "./components/ui/CurrentSaleSummary";
 import DashboardHeader from "@/components/ui/DashboardHeader";
-
+import PrintReceipt from "@/components/PrintReceipt";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -70,6 +70,7 @@ const Sale = () => {
       <section className="flex flex-col gap-4 px-6 pt-6 mb-30">
         <TitleHeader title="Sales Records" subtitle="အရောင်းစရင်းများ" />
         <SaleRecords />
+        <PrintReceipt />
       </section>
     </section>
   );
