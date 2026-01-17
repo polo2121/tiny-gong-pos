@@ -1,6 +1,16 @@
 import React from "react";
 
-const Table = ({ cols, data }) => {
+type Column = {
+  key: string;
+  label: string;
+};
+
+interface TableProps {
+  cols: Column[];
+  data: any[];
+}
+
+const Table = ({ cols, data }: TableProps) => {
   return (
     <div className="rounded-3xl mt-10">
       <table className="border border-collapse w-full text-left rounded-3x">
@@ -24,7 +34,9 @@ const Table = ({ cols, data }) => {
               <td className="p-4">{data.category}</td>
               <td className="p-4">{data.created_at}</td> */}
               {cols.map((col) => (
-                <td className="p-4">{data[col.key]}</td>
+                <td className="p-4" key={col.key}>
+                  {data[col.key]}
+                </td>
               ))}
             </tr>
           ))}

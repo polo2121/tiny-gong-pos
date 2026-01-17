@@ -7,6 +7,8 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import MobileMenu from "@/components/ui/MobileMenu";
 
+import Provider from "./provider";
+
 const margarine = Margarine({
   variable: "--font-margarine",
   weight: ["400"],
@@ -51,18 +53,20 @@ export default function RootLayout({
       <body
         className={`${margarine.variable} ${quicksand.variable} ${uMoe.variable} overflow-y-scroll overflow-x-hidden`}
       >
-        <div className="bg-brown-200 w-full p-3 flex justify-center">
-          <Image
-            src="/jpeg/tiny-gon-icon.jpg"
-            width={100}
-            height={100}
-            alt="icon"
-          />
-        </div>
-        {children}
-        <div className="bg-ambr-200 w-full flex justify-center">
-          <MobileMenu />
-        </div>
+        <Provider>
+          <div className="bg-brown-200 w-full p-3 flex justify-center">
+            <Image
+              src="/jpeg/tiny-gon-icon.jpg"
+              width={100}
+              height={100}
+              alt="icon"
+            />
+          </div>
+          {children}
+          <div className="bg-ambr-200 w-full flex justify-center">
+            <MobileMenu />
+          </div>
+        </Provider>
       </body>
     </html>
   );

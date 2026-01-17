@@ -44,62 +44,63 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
 }
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-margarine: var(--font-margarine), system-ui, sans-serif;
-  ;
   --font-quicksand: var(--font-quicksand), system-ui, sans-serif;
-  ;
   --font-u-moe: var(--font-u-moe);
 
-
+  /* Sale Color Profiles */
   --color-brown-900: #431407;
-  --color-brown-800: #C98039;
-  --color-brown-600: #D4A271;
-  --color-brown-550: #E2C5AA;
-  --color-brown-500: #FFE9D4;
-  --color-brown-400: #F5E9DE;
-  --color-brown-450: #F9DEC5;
+  --color-brown-800: #c98039;
+  --color-brown-600: #d4a271;
+  --color-brown-550: #e2c5aa;
+  --color-brown-500: #ffe9d4;
+  --color-brown-400: #f5e9de;
+  --color-brown-450: #f9dec5;
+  --color-brown-300: #fff2e6;
+  --color-brown-200: #faeee3;
+  --color-brown-100: #fdf7f1;
 
-  --color-brown-300: #FFF2E6;
-  --color-brown-200: #FAEEE3;
-  --color-brown-100: #FDF7F1;
+  /* Stock Color Profiles */
+  --color-stock-600: #d5b463;
+  --color-stock-550: #ddcca1;
+  --color-stock-200: #f6ebd2;
 
-  --color-stock-600: #D5B463;
-  --color-stock-550: #DDCCA1;
-  --color-stock-200: #F6EBD2;
+  /* Product Color Profiles */
+  --color-product-600: #84c5cc;
+  --color-product-550: #bdeaef;
+  --color-product-200: #dcfbfe;
 
-  --color-product-600: #84C5CC;
-  --color-product-550: #BDEAEF;
-  --color-product-200: #DCFBFE;
-
-  --color-remove-200: #FFDDDE;
-  --color-remove-300: #FFCFD0;
-
+  /* Remove Color Profiles */
+  --color-remove-200: #ffddde;
+  --color-remove-300: #ffcfd0;
 
   --radius-home: 36px;
 
-  --shadow-drop-primary-sale-btn: inset 0 4px 0 rgba(255, 255, 255, 0.25), 0 5px 0 var(--color-brown-400);
-  --shadow-drop-mobile-menu: inset 0 4px 0 rgba(255, 255, 255, 0.25), 0 4px 10px rgba(232, 232, 232, 0.4);
+  /* --shadow-drop-primary-stock-btn: inset 0 4px 0 rgba(255, 255, 255, 0.25), 0 5px 0 var(--color-stock-200); */
 
+  --shadow-drop-mobile-menu: inset 0 4px 0 rgba(255, 255, 255, 0.25),
+    0 4px 10px rgba(232, 232, 232, 0.4);
 
-  --shadow-drop-brown-card: inset 0 6px 0 rgba(255, 255, 255, 0.25), 0 8px 0 var(--color-brown-200);
-  --shadow-drop-stock-card: inset 0 6px 0 rgba(255, 255, 255, 0.25), 0 8px 0 var(--color-stock-200);
-  --shadow-drop-product-card: inset 0 6px 0 rgba(255, 255, 255, 0.25), 0 8px 0 var(--color-product-200);
+  --shadow-drop-brown-card: inset 0 6px 0 rgba(255, 255, 255, 0.25),
+    0 8px 0 var(--color-brown-200);
+  --shadow-drop-stock-card: inset 0 6px 0 rgba(255, 255, 255, 0.25),
+    0 8px 0 var(--color-stock-200);
+  --shadow-drop-product-card: inset 0 6px 0 rgba(255, 255, 255, 0.25),
+    0 8px 0 var(--color-product-200);
 
-  --anim-shine-over-l: shine-over-l 520ms cubic-bezier(.2, .8, .25, 1) both;
-  --anim-shine-over-xs: shine-over-xs 1000ms cubic-bezier(.2, .8, .25, 1) both;
-  --anim-shine-origin-xs: shine-origin-xs 1000ms cubic-bezier(.2, .8, .25, 1) both;
+  --anim-shine-over-l: shine-over-l 520ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  --anim-shine-over-xs: shine-over-xs 1000ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  --anim-shine-origin-xs: shine-origin-xs 1000ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
 
-  --anim-bubble: bubble 1000ms cubic-bezier(.2, .8, .25, 1) both;
-  --anim-bubble-press: bubble-press 100ms cubic-bezier(.2, .8, .25, 1) both;
+  --anim-bubble: bubble 1000ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  --anim-bubble-press: bubble-press 100ms cubic-bezier(0.2, 0.8, 0.25, 1) both;
 
   --breakpoint-xs: 400px;
-
 }
 
 html {
@@ -110,42 +111,39 @@ html {
 body {
   font-family: "UMoe", ui-sans-serif, system-ui;
 }
-.custom-border{
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='22' ry='22' stroke='%23838383' stroke-width='1' stroke-dasharray='6%2c 14' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
 
+.custom-border {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='22' ry='22' stroke='%23838383' stroke-width='1' stroke-dasharray='6%2c 14' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
 }
+
 .customer-border-b {
-  background-image: repeating-linear-gradient(
-    to right,
-    #838383 0 6px,
-    transparent 6px 20px
-  );
+  background-image: repeating-linear-gradient(to right,
+      #838383 0 6px,
+      transparent 6px 20px);
   background-size: 100% 1px;
   background-position: bottom;
   background-repeat: no-repeat;
-
 }
 
-.bubble-shake{
-  animation: bubble 2000ms cubic-bezier(.2, .8, .25, 1) infinite;
-    animation-delay: 40s;
-
+.bubble-shake {
+  animation: bubble 2000ms cubic-bezier(0.2, 0.8, 0.25, 1) infinite;
+  animation-delay: 40s;
 }
+
 .bubble-button:hover .shine {
-  animation: shine-over-xs 1000ms cubic-bezier(.2, .8, .25, 1);
+  animation: shine-over-xs 1000ms cubic-bezier(0.2, 0.8, 0.25, 1);
 }
 
 .bounce-entrance {
   transform-origin: top;
-  animation: springBounceEntrance 480ms cubic-bezier(.34, 1.56, .64, 1) forwards;
+  animation: springBounceEntrance 480ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .bounce-exit {
   transform-origin: top;
-  animation: springBounceExit 800ms cubic-bezier(.34, 1.56, .64, 1) forwards;
+  animation: springBounceExit 800ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   transform: translateY(-8px) scale(0.95);
   opacity: 0;
-
 }
 
 /* keyframes */
@@ -223,6 +221,7 @@ body {
     transform: scaleY(1.1) scaleX(0.9);
   }
 }
+
 @keyframes springBounceEntrance {
   0% {
     transform: translateX(200px) translateY(100px) scale(0.95);
@@ -250,6 +249,7 @@ body {
     opacity: 0;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* --foreground: #ededed; */
@@ -258,13 +258,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .bubble-shake {
-   animation-play-state: paused !important;
+    animation-play-state: paused !important;
   }
 }
-
-
-
-
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -305,7 +301,6 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
 }
 
 .dark {
@@ -340,18 +335,58 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .bubble-button {
+
+    /* Layout & positioning */
+    @apply relative flex flex-col justify-end overflow-hidden;
+    /* Spacing & sizing */
+    @apply gap-2 w-fit h-fit px-6 py-1.5;
+    /* Visual */
+    @apply rounded-home border;
+    /* Interaction behavior */
+    @apply select-none touch-none transition-transform will-change-transform;
+    /* Accessibility & states */
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+
+    /* Use component tokens */
+    background-color: var(--btn-bg);
+    border-color: var(--btn-border);
+    color: var(--btn-text);
+
+    /* Shadow system */
+    box-shadow:
+      inset 0 4px 0 rgba(255, 255, 255, 0.25),
+      0 5px 0 var(--shadow-color);
+
+
+    /* Animations */
+    animation: var(--anim-bubble);
 
   }
 
+  /* Pressed State */
+  .bubble-button:active {
+    animation: var(--anim-bubble-press);
+  }
+
+  /* Variant */
+  .bubble-button[data-variant="brown"] {
+    --btn-bg: var(--color-brown-600);
+    --btn-border: var(--color-brown-550);
+    --btn-text: var(--color-white);
+    --shadow-color: var(--color-brown-400);
+  }
 }

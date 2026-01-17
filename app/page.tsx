@@ -1,4 +1,4 @@
-import BubbleButton from "@/components/BubbleButton";
+import BubbleButton from "@/components/BubbleCardButton";
 
 export default function Home() {
   return (

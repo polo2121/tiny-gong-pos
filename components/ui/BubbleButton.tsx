@@ -1,31 +1,45 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-interface PrimaryButtonProps {
-  type: string;
-  text: string;
-}
-interface ButtonColor {
-  [key: string]: string;
-}
-
-const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
-  const buttonColor: ButtonColor = {
-    sale: "border-brown-550 bg-brown-600 text-white shadow-drop-primary-sale-btn",
+type BaseProps = {
+  href?: string;
+  variant?: "brown" | "stock" | "product";
+  icon: boolean;
+  children?: React.ReactNode;
+};
+type AnchorProps = BaseProps &
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+  };
+type ButtonProps = BaseProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: undefined;
   };
 
+type BubbleButtonProps = AnchorProps | ButtonProps;
+
+const BubbleButton = ({
+  href,
+  variant,
+  icon = false,
+  children,
+}: BubbleButtonProps) => {
+  const Component = href ? "a" : "button";
+
   return (
-    <a
-      href="/sales"
-      className={`relative overflow-hidden group select-none touch-none flex flex-col justify-end gap-2 w-fit h-fit px-2 py-1.5 rounded-home border ${buttonColor[type]} transition-transform will-change-transform animate-(--anim-bubble) active:animate-(--anim-bubble-press) focus-visible:none bubble-button`}
+    <Component
+      href={href}
       style={{ WebkitTouchCallout: "none" }}
+      className={`bubble-button group`}
+      data-variant="brown"
     >
       {/* shine effect */}
-      <div className="w-full h-full absolute left-0 bottom-0  z-30 touch-none select-none bg-amer-300 shine animate-(--anim-shine-origin-xs)">
+      <div className="w-full h-full absolute left-0 bottom-0  z-30 pointer-events-none bg-amer-300 shine animate-(--anim-shine-origin-xs)">
         <div className=" w-4 h-20 relative -top-4 left-0 flex bg-white/20 rotate-45"></div>
         <div className=" w-4 h-20 relative -top-24 left-7 flex bg-white/20 rotate-45"></div>
       </div>
 
+      {/* Top Highlight */}
       <svg
         className="absolute top-1 left-1 z-10"
         width="9"
@@ -43,9 +57,9 @@ const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
       </svg>
 
       {/* Button Content  */}
-      <div className="w-fit h-fit overflow-hidden flex justify-end relative z-10">
-        <Button className="bg-transparent border-none text-white text-sm font-margarine">
-          {text}
+      <span className="flex justify-center items-center gap-2 border-none text-white text-sm font-margarine">
+        {children}
+        {icon ? (
           <svg
             className="size-2"
             viewBox="0 0 2 2"
@@ -57,9 +71,12 @@ const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
               fill="#FCFFF8"
             />
           </svg>
-        </Button>
-      </div>
+        ) : (
+          ""
+        )}
+      </span>
 
+      {/* Bottom Right Highlight */}
       <svg
         className="absolute bottom-1 right-1"
         width="9"
@@ -75,8 +92,8 @@ const PrimaryButton = ({ type, text }: PrimaryButtonProps) => {
           strokeLinecap="round"
         />
       </svg>
-    </a>
+    </Component>
   );
 };
 
-export default PrimaryButton;
+export default BubbleButton;
