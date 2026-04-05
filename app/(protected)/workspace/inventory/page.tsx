@@ -4,10 +4,12 @@ import BreadcrumbNav from "@/components/ui/BreadcrumbNav";
 import MetricCard from "@/features/products/components/cards/MetricCard";
 import { MetricCardItem } from "@/features/products/types/product.types";
 import InventoryMetricsSection from "@/features/products/components/sections/InventoryMetricsSection";
-import { getInventoryMetrics } from "@/features/products/server/product.server.service";
+import { productService } from "@/features/products/server/product.server.service";
 import TodayDate from "@/features/products/components/TodayDate";
 import Link from "next/link";
 import InventoryExploreSection from "@/features/products/components/sections/InventoryExploreSection";
+import { productRepo } from "@/features/products/repositories/product.repository";
+
 
 const BREADCRUMBS = [{ label: "Inventory", href: "/inventory" }];
 const EXPLORE_NAV = [
@@ -24,7 +26,8 @@ const EXPLORE_NAV = [
 ];
 
 const page = async () => {
-  const result = await getInventoryMetrics();
+  const result = await productService.getInventoryMetrics();
+
 
   if (result.isErr()) {
     return <div>Failed to load metrics</div>;

@@ -1,17 +1,17 @@
 "use server";
 import {
-  ProductSearchPage,
-  productSearchSchema,
-  ProductSearch,
+  ProductSearchResultPage,
+  filtersSchema,
+  Filters,
 } from "@/features/products/schema/product-search.schema";
-import { searchProductsService } from "@/features/products/server/product.server.service";
+import { productService } from "@/features/products/server/product.server.service";
 import { ActionResult } from "@/features/products/schema/product.schema";
-import { z } from "zod";
 
 export async function searchProductsAction(
-  productSearchPayload: ProductSearch,
-): Promise<ActionResult<ProductSearchPage>> {
-  const validatedPayload = productSearchSchema.safeParse(productSearchPayload);
+  payload: Filters,
+): Promise<ActionResult<ProductSearchResultPage>> {
+
+  const validatedPayload = filtersSchema.safeParse(payload);
 
   if (!validatedPayload.success) {
     return {
@@ -24,7 +24,7 @@ export async function searchProductsAction(
     };
   }
 
-  const result = await searchProductsService(validatedPayload.data);
+  const result = await productService.search(validatedPayload.data);
 
   if (result.isErr()) {
     return {

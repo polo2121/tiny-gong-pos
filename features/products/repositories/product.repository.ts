@@ -7,12 +7,11 @@ import {
   InventoryMetricsRecord,
 } from "@/features/products/schema/product.schema";
 import {
-  ProductSearch,
-  productSearchRepositoryRowSchema,
-  ProductSearchRepositoryResult,
+  SearchProductsInput,
+  searchProductsResultRowSchema,
 } from "@/features/products/schema/product-search.schema";
 
-export async function getInventoryMetricsQuery(): Promise<
+async function getInventoryMetrics(): Promise<
   Result<InventoryMetricsRecord, AppError>
 > {
   try {
@@ -54,122 +53,78 @@ export async function getInventoryMetricsQuery(): Promise<
   }
 }
 
-export async function productSearchQuery({
+
+type SearchProductParams = SearchProductsInput;
+
+async function searchProductsQuery({
   query,
   searchBy,
   cursor,
   limit,
-}: ProductSearch): Promise<Result<ProductSearchRepositoryResult, AppError>> {
+}: SearchProductParams) {
+
   try {
     const supabase = await createClient();
-    const normalizedQuery = query.trim();
 
-    let dbQuery = supabase
-      .from("product_variants")
-      .select(
-        `
-        id,
-        gender,
-        color,
-        size,
-        created_at,
-        product:products!inner(
-          id,
-          name,
-          series_code,
-          category:categories!inner(
-            id,
-            prefix,
-            name
-          )
-        )
-        `,
-      )
-      .order("created_at", { ascending: false })
-      .order("id", { ascending: false })
-      .limit(limit + 1);
-
-    if (cursor) {
-      dbQuery = dbQuery.or(
-        `created_at.lt.${cursor.createdAt},and(created_at.eq.${cursor.createdAt},id.lt.${cursor.id})`,
-      );
-    }
-
-    if (normalizedQuery) {
-      switch (searchBy) {
-        case "name": {
-          dbQuery = dbQuery.or(`name.ilike.%${normalizedQuery}%`, {
-            referencedTable: "product",
-          });
-          break;
-        }
-
-        case "gender": {
-          dbQuery = dbQuery.eq("gender", normalizedQuery);
-          break;
-        }
-
-        case "color": {
-          dbQuery = dbQuery.eq("color", normalizedQuery);
-          break;
-        }
-
-        case "size": {
-          dbQuery = dbQuery.eq("size", normalizedQuery);
-          break;
-        }
-      }
-    }
-
-    const { data, error } = await dbQuery;
+    const { data, error } = await supabase.rpc("search_products_with_cursor_pagination", {
+      p_query: query?.trim() ?? "",
+      p_search_by: searchBy,
+      p_limit: limit,
+      p_cursor_id: cursor?.id ?? null,
+      p_cursor_created_at: cursor?.createdAt ?? null,
+    });
 
     if (error) {
       return err(
         new AppError("Failed to search products.", {
           code: "DATABASE_ERROR",
-          context: "products.productSearchQuery",
+          context: "products.searchProductsQuery",
           cause: error,
-          details: {
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-            query: normalizedQuery,
-            searchBy,
-          },
+          details: { code: error.code, details: error.details, hint: error.hint },
         }),
       );
     }
 
-    const validated = z.array(productSearchRepositoryRowSchema).safeParse(
-      data ?? [],
-    );
-
+    const validated = z.array(searchProductsResultRowSchema).safeParse(data ?? []);
     if (!validated.success) {
       return err(
         new AppError("Invalid product search data.", {
           code: "DATABASE_ERROR",
-          context: "products.productSearchQuery.validation",
+          context: "products.searchProductsQuery.validation",
           cause: validated.error,
           details: z.flattenError(validated.error),
         }),
       );
     }
 
-    const hasMore = validated.data.length > limit;
-    const items = hasMore ? validated.data.slice(0, limit) : validated.data;
-    const lastItem = items.at(-1);
+    const ResultRows = validated.data;
+
+    const firstRow = ResultRows[0];
+    const hasNextCursor = Boolean(
+      firstRow?.next_cursor_id && firstRow?.next_cursor_created_at,
+    );
+
+    const nextCursor = hasNextCursor
+      ? {
+        id: firstRow.next_cursor_id!,
+        createdAt: firstRow.next_cursor_created_at!,
+      }
+      : null;
 
     return ok({
-      items,
-      nextCursor:
-        hasMore && lastItem
-          ? {
-              id: lastItem.id,
-              createdAt: lastItem.created_at,
-            }
-          : null,
+      items: ResultRows,
+      nextCursor,
     });
-  } catch (error) {
+
+  }
+  catch(error) {
     return err(normalizeError(error));
   }
+
 }
+export const productRepo = {
+  getInventoryMetrics,
+  searchProductsQuery,
+};
+
+

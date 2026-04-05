@@ -1,26 +1,29 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { ProductSearch } from "@/features/products/schema/product-search.schema";
+import { Filters } from "@/features/products/schema/product-search.schema";
 import { productApi } from "@/features/products/api/product-api";
+import { buildProductsByCategory } from "@/features/products/utils/build-products-by-category";
 
 const useProductSearch = (
-  productSearchParams: Omit<ProductSearch, "cursor">,
+  productSearchParams: Omit<Filters, "cursor">,
 ) => {
   const query = useInfiniteQuery({
     queryKey: ["product-search", productSearchParams],
-    initialPageParam: null as ProductSearch["cursor"],
-    queryFn: ({ pageParam }: { pageParam: ProductSearch["cursor"] }) =>
-      productApi.productSearch({
+    initialPageParam: null as Filters["cursor"],
+    queryFn: ({ pageParam }: { pageParam: Filters["cursor"] }) =>
+      productApi.search({
         ...productSearchParams,
         cursor: pageParam,
       }),
     getNextPageParam: (
-      lastPage: Awaited<ReturnType<typeof productApi.productSearch>>,
+      lastPage: Awaited<ReturnType<typeof productApi.search>>,
     ) => {
+      console.log(lastPage)
       if (!lastPage.success) return undefined;
       return lastPage.data.nextCursor ?? undefined;
     },
   });
+
 
   const pages = query.data?.pages ?? [];
 
@@ -31,10 +34,15 @@ const useProductSearch = (
   const failedPage = pages.find((page) => page.success === false);
   const actionError = failedPage ? failedPage.error : null;
 
+  
+  const groupedCategory = buildProductsByCategory(items);
+
+
   return {
     ...query,
-    items,
+    groupedCategory,
     actionError,
+
   };
 };
 

@@ -1,8 +1,7 @@
 import React from "react";
-import { searchProductsService } from "@/features/products/server/product.server.service";
 
 const WorkspaePage = async () => {
-  // const data = await searchProductsService({
+  // const data = await productService.searchProducts({
   //   query: "flow",
   //   searchBy: "name",
   //   cursor: null,

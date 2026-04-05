@@ -15,7 +15,7 @@ import useProductSearch from "@/features/products/hooks/useProductSearch";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDebounce } from "@/hooks/useDebounce";
 import ProductCard from "@/features/products/components/cards/ProductCard";
-import { ProductCardSkeleton } from "@/components/ui/skeleton-card";
+import ProductCardSkeleton  from "@/features/products/components/cards/ProductCardSkeleton";
 
 const ProductInStockSection = () => {
   const [searchBy, setSearchBy] = useState<
@@ -25,7 +25,7 @@ const ProductInStockSection = () => {
   const debouncedSearch = useDebounce(search, 600);
 
   const {
-    items,
+    groupedCategory,
     isLoading,
     isError,
     fetchNextPage,
@@ -35,8 +35,9 @@ const ProductInStockSection = () => {
   } = useProductSearch({
     query: debouncedSearch,
     searchBy,
-    limit: 50,
+    limit: 1,
   });
+
 
   if (isError) {
     return (
@@ -48,7 +49,7 @@ const ProductInStockSection = () => {
     );
   }
 
-  const productsByCategory = items;
+  const productsByCategory = groupedCategory;
 
   return (
     <section className="space-y-6">

@@ -3,6 +3,7 @@ import DualText from "@/components/DualText";
 import BreadcrumbNav from "@/components/ui/BreadcrumbNav";
 import TodayDate from "@/features/products/components/TodayDate";
 import ProductInStockSection from "@/features/products/components/sections/ProductInStockSection";
+import { productRepo } from "@/features/products/repositories/product.repository";
 
 const BREADCRUMBS = [
   { label: "Inventory", href: "/workspace/inventory" },
@@ -11,6 +12,15 @@ const BREADCRUMBS = [
 
 const ProductsPage = async () => {
   //   const productsByCategory = await getProductsInStockByCategory();
+
+  const ee = await productRepo.searchProductsQuery({
+  query: "",
+  searchBy: "name",
+  cursor: null,
+  limit: 1,
+});
+
+console.log(ee);
 
   return (
     <main className="flex flex-col text-slate-800">
@@ -55,7 +65,7 @@ const ProductsPage = async () => {
       </section>
 
       <section className="mt-6 px-4 pb-6">
-        <ProductInStockSection />
+        {/* <ProductInStockSection /> */}
       </section>
     </main>
   );

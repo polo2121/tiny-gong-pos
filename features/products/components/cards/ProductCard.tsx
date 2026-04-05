@@ -27,7 +27,7 @@ const ProductCard = ({
       <Card className="h-full flex-row overflow-hidden border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md">
         <div className="flex flex-3  w-full h-full bg-slate-50 p-4">
           <div className="flex h-20 w-20 items-center justify-center rounded-[16px] bg-amber-100">
-            <img src="" alt="product-image" />
+            {/* <img src="" alt="product-image" /> */}
           </div>
         </div>
 
