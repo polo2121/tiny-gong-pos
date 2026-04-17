@@ -14,7 +14,6 @@ export async function signOut() {
       console.log(error)
       throw new AppError("Failed to sign out.", {
         code: "UNAUTHORIZED",
-        statusCode: error.status ?? 500,
         userMsg: "Unable to sign out right now. Please try again.",
         context: "auth.signOut",
         cause: error,

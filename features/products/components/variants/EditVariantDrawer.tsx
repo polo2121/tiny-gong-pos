@@ -110,9 +110,7 @@ const EditVariantDrawer = ({
             size="md"
           />
 
-          <Button variant="ghost" onClick={onClose}>
-            Close
-          </Button>
+          <Button onClick={onClose}>Close</Button>
         </div>
 
         <form
@@ -183,7 +181,6 @@ const EditVariantDrawer = ({
           <div className="flex items-center justify-end gap-3 border-t border-slate-200 px-4 py-5">
             <Button
               type="button"
-              variant="outline"
               onClick={onClose}
               disabled={updateVariantMutation.isPending}
             >

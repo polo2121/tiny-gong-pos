@@ -62,17 +62,17 @@ const VariantCreateForm = ({
           error={variantForm.formState.errors.imageFile?.message}
         />
 
-        <Field label="Color">
+        <Field label="Color" forInput="color">
           <Input {...variantForm.register("color")} placeholder="Enter color" />
           <FieldError message={variantForm.formState.errors.color?.message} />
         </Field>
 
-        <Field label="Size">
+        <Field label="Size" forInput="size">
           <Input {...variantForm.register("size")} placeholder="Enter size" />
           <FieldError message={variantForm.formState.errors.size?.message} />
         </Field>
 
-        <Field label="Gender">
+        <Field label="Gender" forInput="gender">
           <Controller
             control={variantForm.control}
             name="gender"
@@ -92,7 +92,7 @@ const VariantCreateForm = ({
           <FieldError message={variantForm.formState.errors.gender?.message} />
         </Field>
 
-        <Field label="Stock">
+        <Field label="Stock" forInput="stock">
           <Input
             type="number"
             min="0"
@@ -108,7 +108,6 @@ const VariantCreateForm = ({
       <div className="flex items-center justify-end gap-3">
         <Button
           type="button"
-          variant="outline"
           onClick={() => {
             variantForm.reset();
             onCancel();

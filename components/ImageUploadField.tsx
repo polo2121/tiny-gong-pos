@@ -70,12 +70,7 @@ const ImageUploadField = ({
       />
 
       {onRemove ? (
-        <Button
-          type="button"
-          variant="outline"
-          disabled={disabled}
-          onClick={onRemove}
-        >
+        <Button type="button" disabled={disabled} onClick={onRemove}>
           Remove Image
         </Button>
       ) : null}

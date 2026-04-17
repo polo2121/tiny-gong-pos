@@ -13,7 +13,7 @@ const ProductDetailsFooter = ({
   return (
     <Card className="border-slate-200 bg-white shadow-sm">
       <CardContent className="flex flex-col gap-3 py-5 sm:flex-row sm:justify-end">
-        <Button variant="outline" size="lg" onClick={onAddVariant}>
+        <Button size="lg" onClick={onAddVariant}>
           Add New Variant
         </Button>
         <Button size="lg" onClick={onAddProduct}>

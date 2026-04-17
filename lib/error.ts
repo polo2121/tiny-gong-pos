@@ -53,7 +53,7 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
     return new AppError("An unexpected error occurred.", {cause: error})
   }
 
-  export function getUserMessage(error: unknown): AppError {
+  export function getUserMessage(error: unknown): string {
     console.log(error)
-    return normalizeError(error);
+    return normalizeError(error).userMsg as string;
   }

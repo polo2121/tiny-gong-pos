@@ -47,7 +47,7 @@ const ProductCreateForm = ({
       onSubmit={productForm.handleSubmit(onSubmit)}
       className="flex flex-col gap-4"
     >
-      <Field label="Product Name">
+      <Field label="Product Name" forInput="productName">
         <Input
           {...productForm.register("productName")}
           placeholder="Enter product name"
@@ -57,7 +57,7 @@ const ProductCreateForm = ({
           message={productForm.formState.errors.productName?.message}
         />
       </Field>
-      <Field label="Series Code">
+      <Field label="Series Code" forInput="productSeriesCode">
         <Input
           {...productForm.register("productSeriesCode")}
           placeholder="Enter series code"
@@ -67,7 +67,7 @@ const ProductCreateForm = ({
         />
       </Field>
 
-      <Field label="Category">
+      <Field label="Category" forInput="categoryName">
         <Controller
           control={productForm.control}
           name="categoryName"
@@ -90,7 +90,7 @@ const ProductCreateForm = ({
         />
       </Field>
 
-      <Field label="Price">
+      <Field label="Price" forInput="price">
         <Input
           type="number"
           min="0"
@@ -101,7 +101,7 @@ const ProductCreateForm = ({
         <FieldError message={productForm.formState.errors.price?.message} />
       </Field>
 
-      <Field label="Cost">
+      <Field label="Cost" forInput="cost">
         <Input
           type="number"
           min="0"

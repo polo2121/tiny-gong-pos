@@ -2,7 +2,7 @@ import React from "react";
 
 type FieldProps = {
   label: string;
-  subLabel: string;
+  subLabel?: string;
   forInput: string;
   children: React.ReactNode;
 };
@@ -16,7 +16,7 @@ const Field = ({ label, subLabel, forInput, children }: FieldProps) => {
       >
         {label}
       </label>
-      <p className="font-umoe text-sm">({subLabel})</p>
+      <p className="font-umoe text-sm">({subLabel ?? ""})</p>
       <p></p>
       {children}
     </div>
@@ -34,6 +34,8 @@ export const FieldError = ({ message }: FieldErrorProps) => {
   }
 
   return (
-    <p className="text-sm text-red-600 font-quicksand font-medium">* {message}</p>
+    <p className="text-sm text-red-600 font-quicksand font-medium">
+      * {message}
+    </p>
   );
 };
