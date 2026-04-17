@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import ReactQueryProvider from "@/components/ReactQueryProvider";
+import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
+import { Toaster } from "@/components/ui/sonner";
+import { margarine, quicksand, chewy, umoe } from "./fonts";
 import "./globals.css";
+import "@/styles/fonts.css";
+import "@/animations/bubble-shake.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { SectionThemeProvider } from "@/components/providers/SectionThemeProvider";
 
 export const metadata: Metadata = {
   title: "Tiny Gong POS",
@@ -26,15 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${margarine.variable} ${quicksand.variable} ${chewy.variable} ${umoe.variable} antialiased `}
       >
         <ReactQueryProvider>
-          <section className="text-slate-900 bg-slate-200 p-8 mb-10">
-            <header className="w-full text-center font-bold text-lg">
-              Tiny Gong
-            </header>
-          </section>
-          {children}
+          <SectionThemeProvider defaultSection="workspace">
+            {children}
+            <Toaster richColors />
+          </SectionThemeProvider>
         </ReactQueryProvider>
       </body>
     </html>

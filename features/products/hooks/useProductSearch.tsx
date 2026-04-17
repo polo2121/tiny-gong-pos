@@ -1,48 +1,42 @@
 "use client";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { Filters } from "@/features/products/schema/product-search.schema";
-import { productApi } from "@/features/products/api/product-api";
-import { buildProductsByCategory } from "@/features/products/utils/build-products-by-category";
 
-const useProductSearch = (
-  productSearchParams: Omit<Filters, "cursor">,
-) => {
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { searchProductsAction } from "@/features/products/server/product.server.action";
+import { SearchProductsInput } from "@/features/products/schema/product-search.schema";
+
+type ProductSearchParams = Omit<SearchProductsInput, "cursor">;
+const useProductSearch = (productSearchParams: ProductSearchParams) => {
   const query = useInfiniteQuery({
     queryKey: ["product-search", productSearchParams],
-    initialPageParam: null as Filters["cursor"],
-    queryFn: ({ pageParam }: { pageParam: Filters["cursor"] }) =>
-      productApi.search({
+    initialPageParam: null as SearchProductsInput["cursor"],
+    queryFn: ({ pageParam }: { pageParam: SearchProductsInput["cursor"] }) =>
+      searchProductsAction({
         ...productSearchParams,
         cursor: pageParam,
       }),
     getNextPageParam: (
-      lastPage: Awaited<ReturnType<typeof productApi.search>>,
+      lastPage: Awaited<ReturnType<typeof searchProductsAction>>,
     ) => {
-      console.log(lastPage)
-      if (!lastPage.success) return undefined;
+      if (!lastPage.success) {
+        return undefined;
+      }
       return lastPage.data.nextCursor ?? undefined;
     },
   });
 
-
   const pages = query.data?.pages ?? [];
 
-  const items = pages
+  const productCards = pages
     .filter((page) => page.success)
-    .flatMap((page) => page.data.items);
+    .flatMap((page) => page.data.productCards);
 
   const failedPage = pages.find((page) => page.success === false);
   const actionError = failedPage ? failedPage.error : null;
 
-  
-  const groupedCategory = buildProductsByCategory(items);
-
-
   return {
     ...query,
-    groupedCategory,
+    productCards,
     actionError,
-
   };
 };
 

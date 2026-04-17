@@ -34,22 +34,26 @@ export const searchProductsResultRowSchema = z.object({
   next_cursor_created_at: z.string().nullable(),
 });
 
-export type SearchProductsResultRow = z.infer<typeof searchProductsResultRowSchema>;
-
-
-// export const productSearchRepositoryResultSchema = z.object({
-//   items:      z.array(productSearchRepositoryRowSchema),
-//   nextCursor: searchProductsCursorSchema.nullable(),
-// });
-
 // --- service (grouped shape for UI) ---
-
+export const productCardsSchema = z.object({
+  productId: z.uuid(),
+  productName: z.string(),
+  productSeriesCode: z.string(),
+  colors: z.array(z.string()),
+  sizes: z.array(z.string()),
+  category: z.object({
+    categoryId: z.string().uuid(),
+    categoryName: z.string(),
+    prefix: z.string(),
+  }),
+});
 
 
 // --- types ---
 
 export type SearchProductsCursor           = z.infer<typeof searchProductsCursorSchema>;
 export type SearchProductsInput = z.infer<typeof searchProductsInputSchema>
-// export type ProductSearchRepositoryRow    = z.infer<typeof productSearchRepositoryRowSchema>;
-// export type ProductSearchRepositoryResult = z.infer<typeof productSearchRepositoryResultSchema>;
-// export type ProductSearchCategory         = ProductSearchResultPage["items"][number];
+export type SearchProductsResultRow = z.infer<typeof searchProductsResultRowSchema>;
+export type ProductCards = z.infer<typeof productCardsSchema>;
+
+

@@ -11,3 +11,25 @@ export type MetricCardItem = {
   number: number;
   unit: "MMK" | "Item(s)";
 };
+
+
+export type ProductDetails = {
+  productId: string;
+  productName: string;
+  productSeriesCode: string;
+  categoryName: string;
+  price: number;
+  cost: number;
+  variantItems: ProductVariantItem[];
+};
+
+export type ProductVariantItem = {
+  variantId: string;
+  imageUrl?: string | null;
+  imagePath?: string | null;
+  color: string;
+  size: string;
+  gender: string;
+  stock: number;
+};
+

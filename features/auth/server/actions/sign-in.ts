@@ -38,7 +38,6 @@ export async function signIn(formData: FormData) {
       if (error.status === 400 || error.status === 401) {
         throw new AppError("Failed to sign in.", {
           code: "UNAUTHORIZED",
-          statusCode: error.status ?? 401,
           userMsg: "Invalid email or password.",
           context: "auth.signIn",
           cause: error,
@@ -52,7 +51,6 @@ export async function signIn(formData: FormData) {
 
       throw new AppError("Failed to sign in.", {
         code: "UNAUTHORIZED",
-        statusCode: error.status ?? 500,
         userMsg: "Unable to sign in right now. Please try again.",
         context: "auth.signIn",
         cause: error,
@@ -63,10 +61,8 @@ export async function signIn(formData: FormData) {
         },
       });
     }
-  } catch (error) {
-    console.log(error)
-    const message = getUserMessage(error);
-    redirect(`/login?error=${encodeURIComponent(message)}`);
+  } catch (error: unknown) {
+    redirect(`/login?error=${encodeURIComponent((error as AppError).userMsg)}`);
   }
 
   redirect("/workspace");

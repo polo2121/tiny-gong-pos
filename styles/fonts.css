@@ -1,0 +1,13 @@
+/* app/font.css */
+.font-margarine {
+  font-family: var(--font-margarine), cursive;
+}
+.font-quicksand {
+  font-family: var(--font-quicksand), sans-serif;
+}
+.font-chewy {
+  font-family: var(--font-chewy), cursive;
+}
+.font-umoe {
+  font-family: var(--font-umoe), sans-serif;
+}

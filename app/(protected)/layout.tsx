@@ -14,6 +14,11 @@ export default async function ProtectedLayout({
 
   return (
     <>
+      <section className="text-slate-900 bg-slate-200 p-8">
+        <header className="w-full text-center font-bold text-lg">
+          Tiny Gong
+        </header>
+      </section>
       <header className="flex items-center justify-between border-b bg-white px-4 py-3">
         <h1 className="text-sm font-semibold text-slate-900">Tiny Gong POS</h1>
 

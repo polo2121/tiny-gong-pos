@@ -1,57 +1,39 @@
-import { ProductSearchResultPage } from "@/features/products/schema/product-search.schema";
+import { SearchProductsResultRow,ProductCards } from "@/features/products/schema/product-search.schema";
 
-type FlatItems = ProductSearchResultPage["items"][number];
-type CategoryItem = {
-  categoryId: string;
-  categoryPrefix: string;
-  categoryName: string;
-  products: {
-    productId: string;
-    productName: string;
-    productSeriesCode: string;
-    colors: string[];
-    sizes: string[];
-    genders: string[];
-  }[];
-};
 
-export function buildProductsByCategory(flatItems: FlatItems[] = []) {
-  if (!flatItems.length) return [];
+export function buildProductCards(flatItems : SearchProductsResultRow[]) {
 
-  const categoryMap = new Map<string, CategoryItem>();
+  if(!flatItems.length)
+    return [];
 
-  for (const { product, color, size, gender } of flatItems) {
-    const categoryId = product.category.categoryId;
+  const productsById = new Map<string, ProductCards>();
 
-    if (!categoryMap.has(categoryId)) {
-      categoryMap.set(categoryId, {
-        categoryId,
-        categoryPrefix: product.category.prefix,
-        categoryName: product.category.categoryName,
-        products: [],
+  for (const item of flatItems) {
+    if (!productsById.has(item.product_id)) {
+      productsById.set(item.product_id, {
+        productId: item.product_id,
+        productName: item.product_name,
+        productSeriesCode: item.product_series_code,
+        colors: [],
+        sizes: [],
+        category: {
+          categoryId: item.category_id,
+          categoryName: item.category_name,
+          prefix: item.category_prefix,
+        },
       });
     }
 
-    const category = categoryMap.get(categoryId)!;
-    let productCard = category.products.find(
-      (p) => p.productId === product.productId,
-    );
+    const product = productsById.get(item.product_id)!;
 
-    if (!productCard) {
-      productCard = {
-        productId: product.productId,
-        productName: product.productName,
-        productSeriesCode: product.seriesCode,
-        colors: [],
-        sizes: [],
-        genders: [],
-      };
-      category.products.push(productCard);
+    if (!product.colors.includes(item.color)) {
+      product.colors.push(item.color);
     }
 
-    if (!productCard.colors.includes(color)) productCard.colors.push(color);
-    if (!productCard.sizes.includes(size)) productCard.sizes.push(size);
-    if (!productCard.genders.includes(gender)) productCard.genders.push(gender);
+    if (!product.sizes.includes(item.size)) {
+      product.sizes.push(item.size);
+    }
   }
-  return Array.from(categoryMap.values());
+
+  return Array.from(productsById.values());
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import DualText from "@/components/DualText";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import useProductSearch from "@/features/products/hooks/useProductSearch";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDebounce } from "@/hooks/useDebounce";
 import ProductCard from "@/features/products/components/cards/ProductCard";
-import ProductCardSkeleton  from "@/features/products/components/cards/ProductCardSkeleton";
+import ProductCardSkeleton from "@/features/products/components/cards/ProductCardSkeleton";
 
 const ProductInStockSection = () => {
   const [searchBy, setSearchBy] = useState<
@@ -25,7 +26,7 @@ const ProductInStockSection = () => {
   const debouncedSearch = useDebounce(search, 600);
 
   const {
-    groupedCategory,
+    productCards,
     isLoading,
     isError,
     fetchNextPage,
@@ -35,9 +36,8 @@ const ProductInStockSection = () => {
   } = useProductSearch({
     query: debouncedSearch,
     searchBy,
-    limit: 1,
+    limit: 50,
   });
-
 
   if (isError) {
     return (
@@ -49,8 +49,6 @@ const ProductInStockSection = () => {
     );
   }
 
-  const productsByCategory = groupedCategory;
-
   return (
     <section className="space-y-6">
       <div className="flex items-start justify-between gap-4">
@@ -59,7 +57,9 @@ const ProductInStockSection = () => {
           secondary="လက်ကျန်ကုန်ပစ္စည်းများ"
           size="lg"
         />
-        <Button>Add Product</Button>
+        <Link href="/workspace/inventory/products/create">
+          <Button>Add Product</Button>
+        </Link>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -100,7 +100,7 @@ const ProductInStockSection = () => {
           <ProductCardSkeleton key={index} />
         ))}
 
-      {!productsByCategory.length && !isLoading && (
+      {!productCards.length && !isLoading && (
         <Card>
           <CardContent className="p-6 text-sm text-slate-500">
             No products found.
@@ -108,27 +108,22 @@ const ProductInStockSection = () => {
         </Card>
       )}
 
-      {productsByCategory.length > 0 && (
+      {productCards.length > 0 && (
         <div className="space-y-8">
-          {productsByCategory.map((category) => (
-            <section key={category.categoryId} className="space-y-4">
-              <DualText
-                primary={category.categoryName}
-                secondary={category.categoryPrefix}
-                size="md"
-              />
-
+          {productCards.map((product) => (
+            <section key={product.productId} className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {category.products.map((product) => (
-                  <ProductCard
-                    key={product.productId}
-                    productName={product.productName}
-                    seriesCode={product.productSeriesCode}
-                    colors={product.colors}
-                    sizes={product.sizes}
-                    genders={product.genders}
-                  />
-                ))}
+                <ProductCard
+                  key={product.productId}
+                  productId={product.productId}
+                  productName={product.productName}
+                  seriesCode={product.productSeriesCode}
+                  colors={product.colors}
+                  sizes={product.sizes}
+                  genders={product.genders}
+                  searchQuery={search}
+                  searchBy={searchBy}
+                />
               </div>
             </section>
           ))}
