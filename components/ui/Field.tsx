@@ -9,7 +9,7 @@ type FieldProps = {
 
 const Field = ({ label, subLabel, forInput, children }: FieldProps) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 relative">
       <label
         className="font-margarine text-lg font-medium capitalize"
         htmlFor={forInput}

@@ -1,11 +1,23 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
+
 import IdleLogout from "@/features/auth/IdleLogout";
 import { requireSession } from "@/lib/auth/require-session";
 import { signOut } from "@/features/auth/server/actions/sign-out";
+import { SectionTheme } from "@/components/SectionTheme";
+import Sidebar from "@/components/Sidebar";
 
 type ProtectedLayoutProps = {
   children: ReactNode;
 };
+
+function getThemeClass(pathname: string) {
+  if (pathname.startsWith("/workspace/inventory")) return "theme-inventory";
+  if (pathname.startsWith("/workspace/sales")) return "theme-sales";
+  if (pathname.startsWith("/workspace/reports")) return "theme-reports";
+  if (pathname.startsWith("/workspace/settings")) return "theme-settings";
+  return "theme-workspace";
+}
 
 export default async function ProtectedLayout({
   children,
@@ -13,27 +25,10 @@ export default async function ProtectedLayout({
   await requireSession();
 
   return (
-    <>
-      <section className="text-slate-900 bg-slate-200 p-8">
-        <header className="w-full text-center font-bold text-lg">
-          Tiny Gong
-        </header>
-      </section>
-      <header className="flex items-center justify-between border-b bg-white px-4 py-3">
-        <h1 className="text-sm font-semibold text-slate-900">Tiny Gong POS</h1>
-
-        <form action={signOut}>
-          <button
-            type="submit"
-            className="rounded-lg border px-3 py-2 text-sm font-medium text-slate-700"
-          >
-            Sign out
-          </button>
-        </form>
-      </header>
-
+    <SectionTheme>
+      <Sidebar onSignOut={signOut}>{children}</Sidebar>
+      {/* Session Handling */}
       <IdleLogout />
-      {children}
-    </>
+    </SectionTheme>
   );
 }

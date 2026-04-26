@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 type DualTextSize = "sm" | "md" | "lg";
@@ -14,16 +15,16 @@ const SIZE_STYLES: Record<
   { primary: string; secondary: string }
 > = {
   sm: {
-    primary: "text-sm font-semibold",
-    secondary: "text-[10px] text-gray-500",
+    primary: "text-xs sm:text-base line-clamp-1",
+    secondary: "text-[10px]  md:text-xs lg:text-sm text-gray-500 line-clamp-1",
   },
   md: {
-    primary: "text-lg font-bold",
-    secondary: "text-[10px] text-gray-500",
+    primary: "text-2xl font-bold",
+    secondary: "text-base text-gray-500 line-clamp-1",
   },
   lg: {
     primary: "text-3xl font-black",
-    secondary: "text-sm text-gray-500",
+    secondary: "text-sm text-gray-500 sm:text-lg",
   },
 };
 
@@ -36,9 +37,14 @@ const DualText = ({
   const styles = SIZE_STYLES[size];
 
   return (
-    <div className={className}>
-      <h2 className={styles.primary}>{primary}</h2>
-      <p className={styles.secondary}>({secondary})</p>
+    <div
+      className={cn(
+        "font-margarine capitalize text-theme-primary-800 ",
+        className,
+      )}
+    >
+      <h2 className={cn("", styles.primary)}>{primary}</h2>
+      <p className={cn("font-umoe", styles.secondary)}>({secondary})</p>
     </div>
   );
 };

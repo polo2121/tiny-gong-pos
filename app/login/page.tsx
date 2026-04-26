@@ -2,7 +2,8 @@ import { signIn } from "@/features/auth/server/actions/sign-in";
 import Image from "next/image";
 import Field, { FieldError } from "@/components/ui/Field";
 import { Input } from "@base-ui/react/input";
-import { Button } from "@/components/ui/button";
+import SubmitButton from "./SubmitButton";
+import { WatcherSVG } from "@/components/SVG/Watcher";
 
 type LoginPageProps = {
   searchParams: Promise<{ error?: string }>;
@@ -26,7 +27,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           />
         </div>
 
-        {/* <img src="/login-background.svg" alt="login-background" /> */}
         <div className="w-full top-4 bgred-300 h-50 flex">
           <Image
             src="/login-background.svg"
@@ -78,7 +78,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       </div>
 
       <div className="relative z-10 flex-1 w-full max-w-md m-auto rounded-2xl px-4 py-8 ">
-        <form action={signIn} className="space-y-4 flex flex-col gap-2">
+        <form action={signIn} className="space-y-4 flex flex-col gap-2 ">
           <Field
             label="tingers' email"
             subLabel="email ကိုအောက်တွင်ရိုက်ပေးပါ."
@@ -98,6 +98,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             subLabel="password အောက်တွင်ရိုက်ပေးပါ."
             forInput="password"
           >
+            {/* <WatcherSVG className="absolute right-4 bottom-14" /> */}
+
             <Input
               id="password"
               name="password"
@@ -107,10 +109,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             />
             {error ? <FieldError message={error} /> : null}
           </Field>
-
-          <Button className="w-full" type="submit" variant="bubble" size="lg">
-            Start Shift Now
-          </Button>
+          <SubmitButton />
         </form>
       </div>
     </main>

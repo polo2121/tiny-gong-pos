@@ -474,3 +474,78 @@
 // };
 
 // export default ProductRegistrationSection;
+
+
+
+
+        //   <div className="w-30 h-60 rounded-tr-[30px] rounded-bl-[30px] bg-theme-primary-100 relative flex flex-col justify-center items-center">
+        //     {/* Handler Icon */}
+        //     <div className="flex justify-center items-center absolute -top-14">
+        //       <Image
+        //         width={100}
+        //         height={100}
+        //         className="w-6"
+        //         src="/inventory/category-tag-handle.svg"
+        //         alt="category-tag-handle-icon"
+        //       />
+        //     </div>
+
+        //     {/* Spark Icon */}
+        //     <Image
+        //       width={100}
+        //       height={100}
+        //       className="top-4 w-[90%]"
+        //       src="/inventory/category-tag-spark.svg"
+        //       alt="category-tag-spark-icon"
+        //       loading="eager"
+        //     />
+
+        //     {/* Details */}
+        //     <div className="w-full p-4 ">
+        //       {/* <span className="font-margarine text-slate-400">(15)</span> */}
+        //       <h1 className="font-margarine text-xl text-theme-primary-500">
+        //         DR0001
+        //       </h1>
+        //       <p className="font-quicksand font-medium text-base text-theme-primary-900 line-clamp-2 cursor-pointer">
+        //         Flower Dress
+        //       </p>
+
+        //       {/* Cloth Icon */}
+        //       <Image
+        //         width={100}
+        //         height={100}
+        //         className="size-18  absolute bottom-0 object-contain"
+        //         src="/inventory/category-tag-line.svg"
+        //         alt="category-tag-line-icon"
+        //         loading="eager"
+        //       />
+
+        //       {/* Dotted line */}
+        //       <Image
+        //         width={100}
+        //         height={100}
+        //         className="w-16 object-contain relative z-20"
+        //         src="/inventory/category-dress-icon.svg"
+        //         alt="category-dress-icon"
+        //         loading="eager"
+        //       />
+        //     </div>
+        //   </div>
+
+
+
+
+
+        //           <CategoryTag>
+        //     <CategoryTagFront>
+        //       <div className="w-full text-left space-y-1">
+        //         <h2 className="font-margarine text-xl leading-none text-theme-primary-500">
+        //           Flower
+        //         </h2>
+        //         <p className="line-clamp-2 font-quicksand text-sm font-semibold text-theme-primary-900/80">
+        //           DR0001
+        //         </p>
+        //       </div>
+        //     </CategoryTagFront>
+
+        //   </CategoryTag>

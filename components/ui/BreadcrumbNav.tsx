@@ -13,11 +13,10 @@ type BreadcrumbNavProps = {
     label: string;
     href: string;
   }[];
-  className?: string;
 };
-const BreadcrumbNav = ({ breadcrumbs, className = "" }: BreadcrumbNavProps) => {
+const BreadcrumbNav = ({ breadcrumbs }: BreadcrumbNavProps) => {
   return (
-    <Breadcrumb className={className}>
+    <Breadcrumb className="font-quicksand">
       <BreadcrumbList>
         {breadcrumbs.map((item, index) => {
           const isLast = index === breadcrumbs.length - 1;

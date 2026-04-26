@@ -59,9 +59,16 @@
   --color-theme-primary-900: var(--theme-primary-900);
   --color-theme-primary-btn-bg: var(--theme-primary-btn-bg);
 
-  --color-theme-sales: var(--theme-sales-50);
-  --color-theme-stocks: var(--theme-stocks-50);
+  --color-theme-sales: var(--theme-sales-500);
+  --color-theme-stocks: var(--theme-stocks-500);
   --color-theme-inventory: var(--theme-inventory-500);
+
+  --color-theme-profits: var(--theme-profits-500);
+  --color-theme-expenses: var(--theme-expenses-500);
+  --color-theme-customers: var(--theme-customers-500);
+
+   --breakpoint-xs: 30rem; /* 480px */
+  --breakpoint-3xs: 20rem; /* 320px */
 
 }
 
@@ -127,7 +134,11 @@
 
   --theme-sales-500: #B77C42;
   --theme-workspace-500: #B77C42;
-  --theme-stocks-50: #B98F2A;
+  --theme-stocks-500: #B98F2A;
+
+  --theme-profits-500: #548b2d;
+  --theme-expenses-500: #bc5c34;
+  --theme-customers-500: #526c9f;
 }
 
 .dark {
